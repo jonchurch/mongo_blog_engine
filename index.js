@@ -7,11 +7,13 @@ const cors = require('cors');
 const port = process.env.PORT || 3000;
 
 const commentRouter = require('./routes/comments.js');
+const postRouter = require('./routes/posts.js');
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 server.use(commentRouter);
+server.use(postRouter);
 
 server.get('/', function(req, res) {
 	res.send('Booyah');
