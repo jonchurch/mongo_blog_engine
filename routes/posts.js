@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 const router = require('express').Router();
+const Post = require('../models/post.js');
 
 router.get('/posts', getAllPosts);
 router.get('/posts/:postId', getPostById);
@@ -13,13 +14,28 @@ function getAllPosts(req, res, next){
 	next();
 }
 function getPostById(req, res, next){
-	console.log('getting a specfic post');
-	next();
+	
 }
 
 function createPost(req, res, next){
-	console.log('creating a post');
-	next();
+	const post = new Post({
+		title: req.body.title,
+		author: req.body.author,
+		body: req.body.body,
+		created: new Date(),
+		updated: new Date()
+	});
+	post.save(function(err, result){
+		if (err) {
+			res.status(500).json({
+				msg: err
+			});
+		} else {
+			res.status(201).json({
+				post: result
+			});
+		}
+	});
 }
 
 function deletePost(req, res, next){

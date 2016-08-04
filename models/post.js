@@ -11,11 +11,12 @@ const postSchema = new Schema({
 		type: String,
 		required: true
 	},
-	author: {
+	author: String,
+	/*author: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 		required: true
-	},
+	},*/
 	created: {
 		type: Date,
 		required: true
