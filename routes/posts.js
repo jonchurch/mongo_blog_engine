@@ -61,7 +61,7 @@ function createPost(req, res, next) {
 }
 
 function deletePost(req, res, next) {
-    Post.remove(req.params.postId, function(err, result){
+    Post.remove({'_id': req.params.postId}, function(err, result){
     	if (err) {
     		res.status(500).json({
     			msg: err
