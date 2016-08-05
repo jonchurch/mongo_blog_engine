@@ -17,10 +17,10 @@ const commentSchema = new Schema({
 		type: Date,
 		required: true
 	},
-	/*post: {
+	post: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
-	},*/
+	},
 	updated: {
 		type: Date,
 		required: true
