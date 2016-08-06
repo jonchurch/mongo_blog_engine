@@ -10,12 +10,15 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI);
 const commentRouter = require('./routes/comments.js');
 const postRouter = require('./routes/posts.js');
+const userRouter = require('./routes/users.js');
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 server.use(commentRouter);
 server.use(postRouter);
+server.use(userRouter);
+
 
 server.get('/', function(req, res) {
 	res.send('Booyah');

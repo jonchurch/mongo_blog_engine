@@ -15,7 +15,6 @@ function getAllPosts(req, res, next) {
             res.status(500).json({
                 msg: err
             });
-            return;
         } else {
             res.status(200).json({
                 posts: foundPosts
