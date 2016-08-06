@@ -21,6 +21,14 @@ const userSchema = new Schema({
 		unique: true
 	}
 });
+userSchema.pre('findOneAndUpdate', function() {
+    this.update({}, {
+        $set: {
+            updated: new Date()
+        }
+    });
+});
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
