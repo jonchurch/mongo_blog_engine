@@ -18,8 +18,10 @@ function signup(req, res) {
                 msg: 'error!'
             })
         }
+        const token = user.generateJwt()
         return res.status(200).json({
-            msg: 'success'
+            msg: 'success',
+            token: token
         })
     })
 }
@@ -32,8 +34,10 @@ function login(req, res) {
             })
         }
         if (user) {
+          const token = user.generateJwt()
         	return res.status(200).json({
-        		msg: 'authentication succeeded'
+        		msg: 'authentication succeeded',
+            token: token
         	})
         } else {
         	return res.status(401).json(info)
