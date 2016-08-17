@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const crypto = require('crypto')
+const jwt = require('jsonwebtoken')
+const secret = process.env.SECRET
 
 const userSchema = new Schema({
     firstName: {
@@ -42,7 +44,17 @@ userSchema.methods.validPassword = function(password) {
     return this.hash === hash
 }
 
-userSchema.methods.generateJwt = function() {}
+userSchema.methods.generateJwt = function() {
+  const expiration = new Date()
+  expiration.setDate(expiration.getDate() + 7)
+  return jwt.sign({
+    _id: this._id,
+    email: this.email,
+    firstName: this.firstName,
+    lastName: this.lastName,
+    exp: parseInt(expiration.getDate() / 1000)
+  }, secret)
+}
 
 userSchema.pre('findOneAndUpdate', function() {
     this.update({}, {
