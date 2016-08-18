@@ -1,10 +1,11 @@
 /*jshint esversion: 6 */
 'use strict';
+require('dotenv')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const secret = process.egnv.SECRET
+const secret = process.env.SECRET
 
 const userSchema = new Schema({
     firstName: {

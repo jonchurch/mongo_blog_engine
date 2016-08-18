@@ -1,11 +1,15 @@
 /*jshint esversion: 6 */
+'use strict'
 
 const router = require('express').Router();
 const User = require('../models/user.js');
+const auth = require('../authentication.js')
 
 router.get('/users', getAllUsers);
 router.get('/users/:userID', getUserById);
-router.post('/users', createUser);
+// router.post('/users', createUser);
+router.post('/signup', auth.signup);
+router.post('/login', auth.login);
 router.put('/users/:userId', updateUser);
 router.delete('/users/:userId', deleteUser);
 

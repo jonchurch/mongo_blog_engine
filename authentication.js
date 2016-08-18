@@ -42,5 +42,5 @@ function login(req, res) {
         } else {
         	return res.status(401).json(info)
         }
-    })
+    })(req, res)
 }

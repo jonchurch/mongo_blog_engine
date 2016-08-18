@@ -6,6 +6,8 @@ const server = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const passport = require('passport')
+require('./config/passport.js')
 const port = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -17,6 +19,7 @@ const userRouter = require('./routes/users.js');
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
+server.use(passport.initialize())
 server.use(commentRouter);
 server.use(postRouter);
 server.use(userRouter);
